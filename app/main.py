@@ -4,9 +4,16 @@ import argparse
 CWD = os.path.abspath(os.path.dirname(__file__))
 os.chdir(CWD)
 
+import logging
 import config as cfg
 import src.app as app
 
+
+logging.basicConfig(level=logging.INFO, 
+                    filename='logging.log', 
+                    filemode='a', 
+                    encoding='UTF-8',
+                    format="%(asctime)s %(levelname)s %(message)s")
 
 parser = argparse.ArgumentParser(prog='Калитка Престиж',
                                  description='Генерирует чертижи для калиток Аполло')

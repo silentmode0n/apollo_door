@@ -5,6 +5,7 @@ import subprocess
 import sys
 import config as cfg
 from src.pdf_creator import PDFCreator
+import logging
 
 
 # ------------------------ view --------------------------------
@@ -202,6 +203,11 @@ def execute(data):
     if not filepath:
         return
     update_data(data) # must have errors!
+
+    logging.info('Заказ: {} | Заказчик: {} | Инженер: {}'.format(data['order'], 
+                                                                 data['customer'], 
+                                                                 data['engineer']))
+
     try:
         pdf = PDFCreator(cfg.PDF, data)
         if data['for_client']:
@@ -212,6 +218,7 @@ def execute(data):
         show_result(filepath)
     except FileNotFoundError as e:
         error_message = 'Не найден файл - {}'.format(e.filename)
+        logging.error(error_message)
         show_errors([error_message,])
 
 
