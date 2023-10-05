@@ -7,6 +7,9 @@ VERSION = "v-2.0 25.09.23"
 # текущий каталог
 CWD = os.getcwd()
 
+# файл логов
+LOG_FILE = os.path.join(CWD, 'logging.log')
+
 # таблица цветов
 RAL_TABLE = ral.RAL_TABLE
 

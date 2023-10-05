@@ -10,7 +10,7 @@ import src.app as app
 
 
 logging.basicConfig(level=logging.INFO, 
-                    filename='logging.log', 
+                    filename=cfg.LOG_FILE, 
                     filemode='a', 
                     encoding='UTF-8',
                     format="%(asctime)s %(levelname)s %(message)s")
