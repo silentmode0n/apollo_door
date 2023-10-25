@@ -309,8 +309,16 @@ def validate_of_int(data):
     for key in cfg.WIDGETS.keys():
         if 'valid' in cfg.WIDGETS[key] and 'int' in cfg.WIDGETS[key]['valid']:
             if not data[key].isdigit():  # если не положительное число
-                errors.append('[{}] имеет не верное значение!'.format(
+                errors.append('[{}] имеет значение не число!'.format(
                     cfg.WIDGETS[key]['text']))
+            elif 'min' in cfg.WIDGETS[key] and int(data[key]) < int(cfg.WIDGETS[key]['min']):
+                errors.append('[{}] имеет значение менее {}!'.format(
+                    cfg.WIDGETS[key]['text'],
+                    cfg.WIDGETS[key]['min']))
+            elif 'max' in cfg.WIDGETS[key] and int(data[key]) < int(cfg.WIDGETS[key]['max']):
+                errors.append('[{}] имеет значение более {}!'.format(
+                    cfg.WIDGETS[key]['text'],
+                    cfg.WIDGETS[key]['max']))
     return errors
 
 
@@ -324,6 +332,7 @@ def validate_of_value(data):
                 errors.append('[{}] имеет не верное значение!'.format(
                     cfg.WIDGETS[key]['text']))
     return errors
+    
 
 
 # def validate_of_width(data):
