@@ -106,9 +106,52 @@ def setup_gui(options, theme):
     sg.SetOptions(**options)
     sg.theme(theme)
 
-def check_state_widgets():
+def check_state_widgets(window):
     """Проверяет и устанавливает принудительные состояния элементов в зависимости от значений других элементов"""
-    pass
+    check_height(window)
+    check_batten(window)
+    check_bridge(window)
+    check_lock_without_handles(window) # не изменять значения ручек
+
+def check_bridge(window):
+    if window['bridge'].get() != cfg.BRIDGE_T:
+        window['bridge_height'].update('0', disabled=True)
+    else:
+        window['bridge_height'].update(disabled=False)
+    if window['bridge'].get() == cfg.BRIDGE_N:
+        window['auto_closer'].update(cfg.NO, disabled=True)
+    else:
+        window['auto_closer'].update(disabled=False)
+    if window['bridge'].get() == cfg.BRIDGE_YS:
+        window['cliarance'].update('0', disabled=True)
+    else:
+        window['cliarance'].update(disabled=False)
+
+def check_batten(window):
+    if window['batten'].get() == cfg.NO:
+        window['batten_lenght'].update('0', disabled=True)
+        window['batten_num'].update('0', disabled=True)
+    else:
+        window['batten_lenght'].update(window['height'].get(), disabled=False)
+        window['batten_num'].update('2', disabled=False)
+
+def check_height(window):
+    if not window['batten_lenght'].Disabled:
+        window['batten_lenght'].update(window['height'].get())
+
+def check_lock(window):
+    lock = window['lock'].get()
+    handle_in = cfg.LOCKS[lock]['handle_in']
+    handle_out = cfg.LOCKS[lock]['handle_out']
+    flexible_tube = cfg.LOCKS[lock]['flexible_tube']
+    window['handle_in'].update(handle_in)
+    window['handle_out'].update(handle_out)
+    window['flexible_tube'].update(flexible_tube)
+
+def check_lock_without_handles(window):
+    lock = window['lock'].get()
+    flexible_tube = cfg.LOCKS[lock]['flexible_tube']
+    window['flexible_tube'].update(flexible_tube)
 
 def run(condition=None):
     """ Создает главное окно программы и запускает событийный цикл """
@@ -119,43 +162,20 @@ def run(condition=None):
     # заполнить поля первичными данными
     if condition:
         window.Fill(condition)
-        check_state_widgets()
+        check_state_widgets(window)
     # главный событийный цикл
     while True:
         event, values = window.Read()
         if event is None:
             break   # закрыть программу
         elif event == 'bridge':
-            if values['bridge'] != cfg.BRIDGE_T:
-                window['bridge_height'].update('0', disabled=True)
-            else:
-                window['bridge_height'].update(disabled=False)
-            if values['bridge'] == cfg.BRIDGE_N:
-                window['auto_closer'].update(cfg.NO, disabled=True)
-            else:
-                window['auto_closer'].update(disabled=False)
-            if values['bridge'] == cfg.BRIDGE_YS:
-                window['cliarance'].update('0', disabled=True)
-            else:
-                window['cliarance'].update(disabled=False)
+            check_bridge(window)
         elif event == 'batten':
-            if values['batten'] == cfg.NO:
-                window['batten_lenght'].update('0', disabled=True)
-                window['batten_num'].update('0', disabled=True)
-            else:
-                window['batten_lenght'].update(values['height'], disabled=False)
-                window['batten_num'].update('2', disabled=False)
+            check_batten(window)
         elif event == 'height':
-            if not window['batten_lenght'].Disabled:
-                window['batten_lenght'].update(values['height'])
+            check_height(window)
         elif event == 'lock':
-            lock = values['lock']
-            handle_in = cfg.LOCKS[lock]['handle_in']
-            handle_out = cfg.LOCKS[lock]['handle_out']
-            flexible_tube = cfg.LOCKS[lock]['flexible_tube']
-            window['handle_in'].update(handle_in)
-            window['handle_out'].update(handle_out)
-            window['flexible_tube'].update(flexible_tube)
+            check_lock(window)
 
         elif event == '-SUBMIT-':
             print(event)
