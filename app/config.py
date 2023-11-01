@@ -32,7 +32,7 @@ def get_filepath(folder, filename):
 
 # параметры окна
 GUI = {
-    'title': 'Калитка ПРЕСТИЖ',
+    'title': 'Калитка ПРЕСТИЖ | ' + VERSION,
     'size_text': [24, 1],
     'size_input': [30, 1],
     'size_combo': [28, 1],
@@ -88,10 +88,10 @@ SIDE = (
 )
 
 # типы рам
-BRIDGE_Y = 'С перемычкой'
-BRIDGE_YS = 'С перемычкой и порогом'
-BRIDGE_N = 'Без перемычки'
-BRIDGE_T = 'С фрамугой'
+BRIDGE_Y = 'с перемычкой'
+BRIDGE_YS = 'с перемычкой и с порогом'
+BRIDGE_N = 'без перемычки'
+BRIDGE_T = 'с фрамугой'
 BRIDGES = (
     BRIDGE_N,
     BRIDGE_Y,
@@ -101,27 +101,33 @@ BRIDGES = (
 
 # типы покраски
 COLOR_TYPES = (
-    'Шагрень',
-    'Матовый',
-    'Глянец'
+    'шагрень',
+    'матовый',
+    'глянец'
 )
 
 #нащельники
 BATTENS = (
     NO,
     '30х30 (сталь)',
-    'AES 30х20 (алюм)',
+    'AES 30x20 (алюминий)',
 )
 
 
 # ручки
 HANDLES = (
-    NO,                 #0
-    'Грибок',           #1
-    'Скоба',            #2
-    'Нажимная Dorma',   #3
-    'Круглая Dorma',    #4
-    'Заказчика',        #5
+    NO,                                 #0
+    'Грибок в цвет',                    #1
+    'Скоба в цвет',                     #2
+    'Dorma Pure нажимная (прямая)',     #3
+    'Dorma Pure нажимная (изогнутая)',  #4
+    'Dorma Pure (шар)',                 #5
+    'Изогнутая 330мм в цвет',           #6
+    'Изогнутая 330мм нерж.',            #7
+    'Штанга квадрат 600мм в цвет',      #8
+    'Штанга цилиндр 400мм нерж.',       #9
+    'Штанга цилиндр 500мм в цвет',      #10
+    '(Заказчика)',                      #11
 )
 
 # гибкие переходы
@@ -133,36 +139,41 @@ FLEXIBLE_TUBES = (
 #замки
 LOCKS = {
     NO: {
-        'handle_in': HANDLES[0],
-        'handle_out': HANDLES[0],
+        'handle_in': HANDLES[1],
+        'handle_out': HANDLES[1],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
-    'CISA/ISEO накладной': {
+    'накладной электромех. (Италия)': {
         'handle_in': HANDLES[0],
-        'handle_out': HANDLES[1],
+        'handle_out': HANDLES[8],
         'flexible_tube': FLEXIBLE_TUBES[1],
     },
-    'ПОЛИС накладной': {
+    'накладной электромех. ПОЛИС': {
         'handle_in': HANDLES[1],
         'handle_out': HANDLES[1],
         'flexible_tube': FLEXIBLE_TUBES[1],
     },
-    'CISA/ISEO врезной': {
+    'врезной электромех. (Италия)': {
         'handle_in': HANDLES[3],
-        'handle_out': HANDLES[4],
+        'handle_out': HANDLES[5],
         'flexible_tube': FLEXIBLE_TUBES[1],
     },
-    'Эл.защелка': {
+    'электромеханическая защелка': {
         'handle_in': HANDLES[3],
-        'handle_out': HANDLES[4],
+        'handle_out': HANDLES[5],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
-    'Механический APEX': {
+    'врезной механический (ключ/барашек)': {
         'handle_in': HANDLES[3],
         'handle_out': HANDLES[3],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
-    'Площадка под замок': {
+    'врезной механический (ключ/ключ)': {
+        'handle_in': HANDLES[3],
+        'handle_out': HANDLES[3],
+        'flexible_tube': FLEXIBLE_TUBES[0],
+    },
+    'электромагнитный ML-395': {
         'handle_in': HANDLES[1],
         'handle_out': HANDLES[1],
         'flexible_tube': FLEXIBLE_TUBES[0],
@@ -175,8 +186,8 @@ LOCKS = {
 }
 
 # тип коробки
-FR_DIRECT = 'Торцевая'
-FR_ANGEL = 'Угловая'
+FR_DIRECT = 'торцевая'
+FR_ANGEL = 'угловая'
 FRAME_TYPES = (
     FR_DIRECT,
     FR_ANGEL,
@@ -907,18 +918,24 @@ DESIGNS = {
 
 # заполнения
 FILLING = {
-    'AG/77': F20,
-    'PD/77': F20,
-    'AER55/S': F20,
-    'AER55/mS': F20,
-    'Профлист 1ст': F20,
-    'Профлист 2ст': F2020,
-    'Сайдинг': F2020,
-    'сэндвич-панель S-гофр DH': F40,
-    'Заказчика 10мм': F20,
-    'Заказчика 20мм': F20,
-    'Заказчика 20мм+20мм': F20,
-    'Заказчика 40мм': F40
+    'профиль AG/77': F20,
+    'профиль PD/77': F20,
+    'профиль AER55/S': F20,
+    'профиль AER55m/S': F20,
+    'жалюзи Аполло Z110': F60,
+    'профлист СС10 шагрень 1ст': F20,
+    'профлист СС10 шагрень 2ст': F2020,
+    'штакетник шагрень 1ст': F2020,
+    'штакетник шагрень 2ст': F2020,
+    'металлосайдинг с 2 сторон': F2020,
+    'металлосайдинг декор': F2020,
+    'сэндвич S-гофр DoorHan': F40,
+    'панель Пластэк Декор': F40,
+    'сетка сварная 3D': FGR,
+    'обрешетка из трубы 20х20': FGR,
+    'заказчика (20мм)': F20,
+    'заказчика (20+20мм)': F2020,
+    'заказчика (40мм)': F40
     }
 
 # описание виджетов окна
