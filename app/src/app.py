@@ -315,7 +315,7 @@ def validate_of_int(data):
                 errors.append('[{}] имеет значение менее {}!'.format(
                     cfg.WIDGETS[key]['text'],
                     cfg.WIDGETS[key]['min']))
-            elif 'max' in cfg.WIDGETS[key] and int(data[key]) < int(cfg.WIDGETS[key]['max']):
+            elif 'max' in cfg.WIDGETS[key] and int(data[key]) > int(cfg.WIDGETS[key]['max']):
                 errors.append('[{}] имеет значение более {}!'.format(
                     cfg.WIDGETS[key]['text'],
                     cfg.WIDGETS[key]['max']))
