@@ -1,4 +1,5 @@
 import os
+import sys
 import argparse
 
 CWD = os.path.abspath(os.path.dirname(__file__))
@@ -9,11 +10,18 @@ import config as cfg
 import src.app as app
 
 
-logging.basicConfig(level=logging.INFO, 
+if sys.version_info <= (3, 9):
+    logging.basicConfig(level=logging.INFO, 
                     filename=cfg.LOG_FILE, 
-                    filemode='a', 
-                    encoding='UTF-8',
-                    format="%(asctime)s %(levelname)s %(message)s")
+                    filemode='a',
+                    format=u"%(asctime)s %(levelname)s %(message)s")
+else:
+    logging.basicConfig(level=logging.INFO, 
+                        filename=cfg.LOG_FILE, 
+                        filemode='a', 
+                        encoding='UTF-8',
+                        format="%(asctime)s %(levelname)s %(message)s")
+
 
 parser = argparse.ArgumentParser(prog='Калитка Престиж',
                                  description='Генерирует чертижи для калиток Аполло')
