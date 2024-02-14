@@ -2,7 +2,7 @@ import os
 import src.ral as ral
 from src.calculators import CalculatorBridgeN, CalculatorBridgeY, CalculatorBridgeT, CalculatorBridgeYS
 
-VERSION = "v-2.0 25.09.23"
+VERSION = "v-2.0 14.02.24"
 
 # текущий каталог
 CWD = os.getcwd()
@@ -119,15 +119,16 @@ HANDLES = (
     NO,                                 #0
     'Грибок в цвет',                    #1
     'Скоба в цвет',                     #2
-    'Dorma Pure нажимная (прямая)',     #3
-    'Dorma Pure нажимная (изогнутая)',  #4
-    'Dorma Pure (шар)',                 #5
-    'Изогнутая 330мм в цвет',           #6
-    'Изогнутая 330мм нерж.',            #7
-    'Штанга квадрат 600мм в цвет',      #8
-    'Штанга цилиндр 400мм нерж.',       #9
-    'Штанга цилиндр 500мм в цвет',      #10
-    '(Заказчика)',                      #11
+    'Изогнутая 330мм в цвет',           #3
+    'Изогнутая 330мм нерж.',            #4
+    'Штанга квадрат 1200мм в цвет',     #5
+    'Штанга квадрат 600мм в цвет',      #6
+    'Штанга цилиндр 400мм нерж.',       #7
+    'Штанга цилиндр 500мм в цвет',      #8
+    'Dorma Pure нажимная (изогнутая)',  #9
+    'Dorma Pure нажимная (прямая)',     #10
+    'Dorma Pure (шар)',                 #11
+    '(Заказчика)',                      #12
 )
 
 # гибкие переходы
@@ -145,7 +146,7 @@ LOCKS = {
     },
     'накладной электромех. (Италия)': {
         'handle_in': HANDLES[0],
-        'handle_out': HANDLES[8],
+        'handle_out': HANDLES[6],
         'flexible_tube': FLEXIBLE_TUBES[1],
     },
     'накладной электромех. ПОЛИС': {
@@ -154,28 +155,33 @@ LOCKS = {
         'flexible_tube': FLEXIBLE_TUBES[1],
     },
     'врезной электромех. (Италия)': {
-        'handle_in': HANDLES[3],
-        'handle_out': HANDLES[5],
+        'handle_in': HANDLES[10],
+        'handle_out': HANDLES[11],
         'flexible_tube': FLEXIBLE_TUBES[1],
     },
     'электромеханическая защелка': {
-        'handle_in': HANDLES[3],
-        'handle_out': HANDLES[5],
+        'handle_in': HANDLES[10],
+        'handle_out': HANDLES[11],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
     'врезной механический (ключ/барашек)': {
-        'handle_in': HANDLES[3],
-        'handle_out': HANDLES[3],
+        'handle_in': HANDLES[10],
+        'handle_out': HANDLES[10],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
     'врезной механический (ключ/ключ)': {
-        'handle_in': HANDLES[3],
-        'handle_out': HANDLES[3],
+        'handle_in': HANDLES[10],
+        'handle_out': HANDLES[10],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
     'электромагнитный ML-395': {
         'handle_in': HANDLES[1],
         'handle_out': HANDLES[1],
+        'flexible_tube': FLEXIBLE_TUBES[0],
+    },
+    'Площадка под замок': {
+        'handle_in': HANDLES[0],
+        'handle_out': HANDLES[0],
         'flexible_tube': FLEXIBLE_TUBES[0],
     },
     'Заказчика': {
@@ -922,20 +928,19 @@ FILLING = {
     'профиль PD/77': F20,
     'профиль AER55/S': F20,
     'профиль AER55m/S': F20,
-    'жалюзи Аполло Z110': F60,
     'профлист СС10 шагрень 1ст': F20,
-    'профлист СС10 шагрень 2ст': F2020,
-    'штакетник шагрень 1ст': F2020,
+    'Профлист 2ст': F2020,
+    'жалюзи Аполло Z110': F60,
+    'штакетник шагрень 1ст': F20,
     'штакетник шагрень 2ст': F2020,
     'металлосайдинг с 2 сторон': F2020,
-    'металлосайдинг декор': F2020,
     'сэндвич S-гофр DoorHan': F40,
     'панель Пластэк Декор': F40,
     'сетка сварная 3D': FGR,
     'обрешетка из трубы 20х20': FGR,
     'заказчика (20мм)': F20,
     'заказчика (20+20мм)': F2020,
-    'заказчика (40мм)': F40
+    'заказчика (40мм)': F40,
     }
 
 # описание виджетов окна
