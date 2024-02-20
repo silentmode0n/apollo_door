@@ -128,7 +128,8 @@ def check_bridge(window):
         window['cliarance'].update(disabled=False)
 
 def check_batten(window):
-    if window['batten'].get() == cfg.NO:
+    batten = window['batten'].get()
+    if batten == cfg.NO or batten == '':
         window['batten_lenght'].update('0', disabled=True)
         window['batten_num'].update('0', disabled=True)
     else:
@@ -150,8 +151,9 @@ def check_lock(window):
 
 def check_lock_without_handles(window):
     lock = window['lock'].get()
-    flexible_tube = cfg.LOCKS[lock]['flexible_tube']
-    window['flexible_tube'].update(flexible_tube)
+    if lock in cfg.LOCKS and cfg.LOCKS[lock].get('flexible_tube'):
+        flexible_tube = cfg.LOCKS[lock]['flexible_tube']
+        window['flexible_tube'].update(flexible_tube)
 
 def run(condition=None):
     """ Создает главное окно программы и запускает событийный цикл """

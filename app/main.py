@@ -11,10 +11,10 @@ import src.app as app
 
 
 if sys.version_info <= (3, 9):
-    logging.basicConfig(level=logging.INFO, 
-                    filename=cfg.LOG_FILE, 
-                    filemode='a',
-                    format=u"%(asctime)s %(levelname)s %(message)s")
+    logging.basicConfig(level=logging.INFO,
+                        filename=cfg.LOG_FILE,
+                        filemode='a',
+                        format=u"%(asctime)s %(levelname)s %(message)s")
 else:
     logging.basicConfig(level=logging.INFO, 
                         filename=cfg.LOG_FILE, 
