@@ -48,6 +48,7 @@ parser.add_argument('--auto_closer', help='Доводчик')
 parser.add_argument('--handle_in', help='Вид ручки изнутри')
 parser.add_argument('--handle_out', help='Вид ручки снаружи')
 parser.add_argument('--batten', help='Нащельник')
+parser.add_argument('--batten_num', help='Кол-во нащельников')
 parser.add_argument('--comments', help='Комментарий')
 
 
