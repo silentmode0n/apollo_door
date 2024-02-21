@@ -129,12 +129,16 @@ def check_bridge(window):
 
 def check_batten(window):
     batten = window['batten'].get()
+    batten_num = window['batten_num'].get()
     if batten == cfg.NO or batten == '':
         window['batten_lenght'].update('0', disabled=True)
         window['batten_num'].update('0', disabled=True)
     else:
         window['batten_lenght'].update(window['height'].get(), disabled=False)
-        window['batten_num'].update('2', disabled=False)
+        if batten_num == '0':
+            window['batten_num'].update('2', disabled=False)
+        else:
+            window['batten_num'].update(batten_num, disabled=False)
 
 def check_height(window):
     if not window['batten_lenght'].Disabled:
