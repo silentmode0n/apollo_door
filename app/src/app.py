@@ -130,7 +130,7 @@ def check_bridge(window):
 def check_batten(window):
     batten = window['batten'].get()
     batten_num = window['batten_num'].get()
-    if batten == cfg.NO or batten == '':
+    if batten.upper() == cfg.NO or batten == '':
         window['batten_lenght'].update('0', disabled=True)
         window['batten_num'].update('0', disabled=True)
     else:
