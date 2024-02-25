@@ -2,6 +2,7 @@ import os
 import sys
 import argparse
 
+
 CWD = os.path.abspath(os.path.dirname(__file__))
 os.chdir(CWD)
 
@@ -79,13 +80,17 @@ debug_condition = {'order': '321',
                    }
 
 if __name__ == "__main__":
-    args = parser.parse_args()
-    condition = {key:value for (key, value) in vars(args).items() if value != None and key != 'debug'}
-    if args.debug:
-        debug_condition.update(condition)
-        condition = debug_condition
-        print()
-        print('----- Run in DEBUG mode -----')
-        print()
-        print(condition)
-    app.run(condition)
+    try:
+        args = parser.parse_args()
+        condition = {key:value for (key, value) in vars(args).items() if value != None and key != 'debug'}
+        if args.debug:
+            debug_condition.update(condition)
+            condition = debug_condition
+            print()
+            print('----- Run in DEBUG mode -----')
+            print()
+            print(condition)
+        app.run(condition)
+    except Exception as e:
+        logging.critical('Критическое исключение!', exc_info=True)
+        print('Критическое исключение: ', e)
