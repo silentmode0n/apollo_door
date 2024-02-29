@@ -160,6 +160,8 @@ def check_lock_without_handles(window):
         window['flexible_tube'].update(flexible_tube)
 
 def run(condition=None):
+    # Объявляем путь хранения файла настройки
+    sg.user_settings_filename(path=cfg.HOMEDIR, filename='apollo_door_settings.json')
     """ Создает главное окно программы и запускает событийный цикл """
     setup_gui(cfg.GUI['options'], cfg.GUI['theme'])
     window = sg.Window(cfg.GUI['title'], create_layout())
@@ -208,9 +210,10 @@ def show_errors(errors):
 def ask_saveas_filename(initial_name='result'):
     """ return file name """
     file_types = (('Document PDF', '*.pdf'), )
+    initialdir = sg.user_settings_get_entry('-initialdir-', '') or cfg.HOMEDIR
     filepath = tk.filedialog.asksaveasfilename(title='Сохранить как',
                                                filetypes=file_types,
-                                               initialdir=cfg.HOMEDIR,
+                                               initialdir=initialdir,
                                                initialfile=initial_name,
                                                defaultextension='.pdf')
     return filepath
@@ -228,6 +231,7 @@ def execute(data):
     filepath = ask_saveas_filename(get_default_filename(data))
     if not filepath:
         return
+    sg.user_settings_set_entry('-initialdir-', os.path.dirname(filepath))
     update_data(data) # must have errors!
 
     logging.info('Заказ: {} | Заказчик: {} | Инженер: {}'.format(data['order'], 
