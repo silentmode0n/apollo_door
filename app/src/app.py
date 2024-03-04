@@ -234,9 +234,10 @@ def execute(data):
     sg.user_settings_set_entry('-initialdir-', os.path.dirname(filepath))
     update_data(data) # must have errors!
 
-    logging.info('Заказ: {} | Заказчик: {} | Инженер: {}'.format(data['order'], 
-                                                                 data['customer'], 
-                                                                 data['engineer']))
+    logging.info('Версия: {} | Заказ: {} | Заказчик: {} | Инженер: {}'.format(cfg.VERSION,
+                                                                              data['order'], 
+                                                                              data['customer'], 
+                                                                              data['engineer']))
 
     try:
         pdf = PDFCreator(cfg.PDF, data)
