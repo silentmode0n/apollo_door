@@ -2,7 +2,7 @@ import os
 import src.ral as ral
 from src.calculators import CalculatorBridgeN, CalculatorBridgeY, CalculatorBridgeT, CalculatorBridgeYS
 
-VERSION = "v-2.1 29.02.24"
+VERSION = "v-2.1 04.03.24"
 
 # текущий каталог
 CWD = os.getcwd()
