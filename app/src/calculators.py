@@ -47,7 +47,7 @@ class CalculatorBase():
         self._door_width = self._width - self._frame_tube[1] * 2 - self._frame_gap * 2
 
     def _calc_door_height(self):
-        self._door_height = self._height - self._cliarance - self._door_tube[1] - self._frame_gap
+        self._door_height = self._height - self._cliarance - self._frame_tube[1] - self._frame_gap
 
     def _calc_door_fill_width(self):
         self._door_fill_width = self._door_width - self._door_tube[1] * 2 - self._fill_gap
