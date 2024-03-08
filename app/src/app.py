@@ -317,7 +317,13 @@ class App():
             window['preview_back'].TKCanvas.create_image(0, 0, image = self.preview_back_image, anchor = tk.NW)
 
     def redraw_preview_frame(self, window):
-        pass
+        """Перерисовывает превью рамы"""
+        window['preview_frame'].TKCanvas.delete('all')
+        design_schema = get_design_schema(window['fill'].get(), window['open'].get(), window['side'].get(), window['bridge'].get())
+        filepath = get_frame_preview_filepath(design_schema)
+        if filepath:
+            self.preview_frame_image = tk.PhotoImage(file=filepath, height=100)
+            window['preview_frame'].TKCanvas.create_image(0, 0, image = self.preview_frame_image, anchor = tk.NW)
 
 
 # --------------------- validators --------------------------------
@@ -389,6 +395,11 @@ def get_back_preview_filepath(design_schema):
     filename = design_schema['back_view']
     if filename:
         return cfg.get_filepath('back_preview', filename)
+
+def get_frame_preview_filepath(design_schema):
+    filename = design_schema['frame_view']
+    if filename:
+        return cfg.get_filepath('frame_preview', filename)
 
 
 def get_sketch_filepath(design_schema):
