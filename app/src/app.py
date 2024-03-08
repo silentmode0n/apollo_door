@@ -126,39 +126,40 @@ class App():
         ]
         order_frame = [
             [sg.Column(order_left_col, pad=cfg.GUI['form_padding']),
-                sg.Column(order_right_col, pad=cfg.GUI['form_padding'])],
+             sg.Column(order_right_col, pad=cfg.GUI['form_padding'])],
         ]
         main_frame = [sg.vtop(
             [sg.Column(main_left_col, pad=cfg.GUI['form_padding']),
-                sg.Column(main_right_col, pad=cfg.GUI['form_padding'])]),
+             sg.Column(main_right_col, pad=cfg.GUI['form_padding'])]),
         ]
         comment_frame = [
             get_form('comments'),
         ]
-        preview_frame = [
-            [sg.Canvas(key='preview_back', background_color='white', size=cfg.GUI['size_preview_back']),
+        preview_frame = [[
+            sg.Canvas(key='preview_back', background_color='white', size=cfg.GUI['size_preview_back']),
             sg.Canvas(key='preview_frame', background_color='white', size=cfg.GUI['size_preview_frame']),
-            sg.Canvas(key='preview_open', background_color='white', size=cfg.GUI['size_preview_open']),]
-        ]
+            sg.Canvas(key='preview_open', background_color='white', size=cfg.GUI['size_preview_open']),
+        ]]
         buttons_frame = [[
-                            sg.Button('> Чертёж <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
-                            sg.VerticalSeparator(color='grey', pad=(10, 0)),
-                            sg.Checkbox('Для клиента', default=True, k='for_client'),
-                            sg.Checkbox('Для производства', default=True, k='for_manufacture'),]
-                        ]
+            sg.Button('> Чертёж <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
+            sg.VerticalSeparator(color='grey', pad=(10, 0)),
+            sg.Checkbox('Для клиента', default=True, k='for_client'),
+            sg.Checkbox('Для производства', default=True, k='for_manufacture'),
+        ]]
         layout = [
             [sg.Frame('Информация о заказе', order_frame)],
             [sg.Frame('Параметры калитки', main_frame)],
             [sg.vtop(
-                [sg.Column([
-                            [sg.Frame('Комментарий', comment_frame, expand_x=True, expand_y=True)],
-                            [sg.Frame('Запуск', buttons_frame, expand_x=True, expand_y=True)],
-                           ], expand_x=False, expand_y=True), 
-                 sg.Column([
-                            [sg.Frame('Предпросмотр', preview_frame, expand_x=True, element_justification='center')],
-                           ], expand_x=True, expand_y=True)
+                [
+                    sg.Column([
+                        [sg.Frame('Комментарий', comment_frame, expand_x=True, expand_y=True)],
+                        [sg.Frame('Запуск', buttons_frame, expand_x=True, expand_y=True)],
+                    ], expand_x=False, expand_y=True),
+                    sg.Column([
+                        [sg.Frame('Предпросмотр', preview_frame, expand_x=True, element_justification='center')],
+                    ], expand_x=True, expand_y=True)
                 ], expand_x=True, expand_y=True)
-            ],
+             ],
         ]
         return layout
 
@@ -310,8 +311,11 @@ class App():
         open_schema = window['side'].get() + window['open'].get()
         filepath = get_open_preview_filepath(open_schema)
         if filepath:
-            self.preview_open_image = tk.PhotoImage(file=filepath, height=100)
-            window['preview_open'].TKCanvas.create_image(0, 0, image = self.preview_open_image, anchor = tk.NW)
+            center_x = cfg.GUI['size_preview_open'][0] / 2
+            center_y = cfg.GUI['size_preview_open'][1] / 2
+            self.preview_open_image = tk.PhotoImage(file=filepath)
+            window['preview_open'].TKCanvas.create_image(
+                center_x, center_y, image = self.preview_open_image, anchor = tk.CENTER)
 
     def redraw_preview_back(self, window):
         """Перерисовывает превью общего вида"""
@@ -319,8 +323,11 @@ class App():
         design_schema = get_design_schema(window['fill'].get(), window['open'].get(), window['side'].get(), window['bridge'].get())
         filepath = get_back_preview_filepath(design_schema)
         if filepath:
-            self.preview_back_image = tk.PhotoImage(file=filepath, height=100)
-            window['preview_back'].TKCanvas.create_image(0, 0, image = self.preview_back_image, anchor = tk.NW)
+            center_x = cfg.GUI['size_preview_back'][0] / 2
+            center_y = cfg.GUI['size_preview_back'][1] / 2
+            self.preview_back_image = tk.PhotoImage(file=filepath)
+            window['preview_back'].TKCanvas.create_image(
+                center_x, center_y, image = self.preview_back_image, anchor = tk.CENTER)
 
     def redraw_preview_frame(self, window):
         """Перерисовывает превью рамы"""
@@ -328,8 +335,11 @@ class App():
         design_schema = get_design_schema(window['fill'].get(), window['open'].get(), window['side'].get(), window['bridge'].get())
         filepath = get_frame_preview_filepath(design_schema)
         if filepath:
-            self.preview_frame_image = tk.PhotoImage(file=filepath, height=100)
-            window['preview_frame'].TKCanvas.create_image(0, 0, image = self.preview_frame_image, anchor = tk.NW)
+            center_x = cfg.GUI['size_preview_frame'][0] / 2
+            center_y = cfg.GUI['size_preview_frame'][1] / 2
+            self.preview_frame_image = tk.PhotoImage(file=filepath)
+            window['preview_frame'].TKCanvas.create_image(
+                center_x, center_y, image = self.preview_frame_image, anchor = tk.CENTER)
 
 
 # --------------------- validators --------------------------------
