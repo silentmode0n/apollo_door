@@ -2,7 +2,7 @@ import os
 import src.ral as ral
 from src.calculators import CalculatorBridgeN, CalculatorBridgeY, CalculatorBridgeT, CalculatorBridgeYS
 
-VERSION = "v-2.2.1a"
+VERSION = "v-2.2.2a"
 
 # текущий каталог
 CWD = os.getcwd()
@@ -44,9 +44,9 @@ GUI = {
     'size_input': [30, 1],
     'size_combo': [28, 1],
     'size_multiline': [54, 5],
-    'size_preview_open': (100, 100),
-    'size_preview_back': (100, 100),
-    'size_preview_frame': (100, 100),
+    'size_preview_open': (120, 150),
+    'size_preview_back': (120, 150),
+    'size_preview_frame': (120, 150),
     'options': {
         'font': [
             'calibri',

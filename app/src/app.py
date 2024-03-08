@@ -124,34 +124,40 @@ class App():
             get_form('batten_lenght'),
             get_form('batten_num'),
         ]
-        order_layout = [
+        order_frame = [
             [sg.Column(order_left_col, pad=cfg.GUI['form_padding']),
                 sg.Column(order_right_col, pad=cfg.GUI['form_padding'])],
         ]
-        main_layout = [sg.vtop(
+        main_frame = [sg.vtop(
             [sg.Column(main_left_col, pad=cfg.GUI['form_padding']),
                 sg.Column(main_right_col, pad=cfg.GUI['form_padding'])]),
         ]
-        comment_layout = [
+        comment_frame = [
             get_form('comments'),
         ]
-        preview_layout = [
+        preview_frame = [
             [sg.Canvas(key='preview_back', background_color='white', size=cfg.GUI['size_preview_back']),
             sg.Canvas(key='preview_frame', background_color='white', size=cfg.GUI['size_preview_frame']),
             sg.Canvas(key='preview_open', background_color='white', size=cfg.GUI['size_preview_open']),]
         ]
+        buttons_frame = [[
+                            sg.Button('> Чертёж <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
+                            sg.VerticalSeparator(color='grey', pad=(10, 0)),
+                            sg.Checkbox('Для клиента', default=True, k='for_client'),
+                            sg.Checkbox('Для производства', default=True, k='for_manufacture'),]
+                        ]
         layout = [
-            [sg.Frame('Информация о заказе', order_layout)],
-            [sg.Frame('Параметры калитки', main_layout)],
+            [sg.Frame('Информация о заказе', order_frame)],
+            [sg.Frame('Параметры калитки', main_frame)],
             [sg.vtop(
-                [sg.Frame('Комментарий', comment_layout), 
-                sg.Frame('Предпросмотр', preview_layout)], expand_x=True
-                )
-            ],
-            [
-                sg.Button('> Чертёж <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
-                sg.Checkbox('Для клиента', default=True, k='for_client'),
-                sg.Checkbox('Для производства', default=True, k='for_manufacture'),
+                [sg.Column([
+                            [sg.Frame('Комментарий', comment_frame, expand_x=True, expand_y=True)],
+                            [sg.Frame('Запуск', buttons_frame, expand_x=True, expand_y=True)],
+                           ], expand_x=False, expand_y=True), 
+                 sg.Column([
+                            [sg.Frame('Предпросмотр', preview_frame, expand_x=True, element_justification='center')],
+                           ], expand_x=True, expand_y=True)
+                ], expand_x=True, expand_y=True)
             ],
         ]
         return layout
