@@ -8,7 +8,8 @@ os.chdir(CWD)
 
 import logging
 import config as cfg
-import src.app as app
+# import src.app as app
+from src.app import App
 
 
 if sys.version_info <= (3, 9):
@@ -90,7 +91,8 @@ if __name__ == "__main__":
             print('----- Run in DEBUG mode -----')
             print()
             print(condition)
-        app.run(condition)
+        app = App(condition)
+        app.run()
     except Exception as e:
         logging.critical('Критическое исключение!', exc_info=True)
         print('Критическое исключение: ', e)
