@@ -58,6 +58,7 @@ class App():
         if self.condition:
             window.Fill(self.condition)
             self.check_state_widgets(window)
+            self.redraw_preview(window)
         # главный событийный цикл
         while True:
             event, values = window.Read()
