@@ -42,6 +42,9 @@ GUI = {
     'size_input': [30, 1],
     'size_combo': [28, 1],
     'size_multiline': [54, 5],
+    'size_preview_open': (100, 100),
+    'size_preview_back': (100, 100),
+    'size_preview_frame': (100, 100),
     'options': {
         'font': [
             'calibri',

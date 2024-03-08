@@ -135,9 +135,9 @@ class App():
             get_form('comments'),
         ]
         preview_layout = [
-            [sg.Canvas(key='preview_back', background_color='white', size=(100, 100)),
-            sg.Canvas(key='preview_frame', background_color='white', size=(100, 100)),
-            sg.Canvas(key='preview_open', background_color='white', size=(100, 100)),]
+            [sg.Canvas(key='preview_back', background_color='white', size=cfg.GUI['size_preview_back']),
+            sg.Canvas(key='preview_frame', background_color='white', size=cfg.GUI['size_preview_frame']),
+            sg.Canvas(key='preview_open', background_color='white', size=cfg.GUI['size_preview_open']),]
         ]
         layout = [
             [sg.Frame('Информация о заказе', order_layout)],
