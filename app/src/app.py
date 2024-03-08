@@ -151,8 +151,6 @@ class App():
                 sg.Button('> Чертёж <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
                 sg.Checkbox('Для клиента', default=True, k='for_client'),
                 sg.Checkbox('Для производства', default=True, k='for_manufacture'),
-                sg.Button('> Нарисовать 1<', key='-REDRAW1-'),
-                sg.Button('> Нарисовать 2<', key='-REDRAW2-'),
             ],
         ]
         return layout
