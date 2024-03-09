@@ -47,7 +47,7 @@ class App():
         # Объявляем путь хранения файла настройки
         sg.user_settings_filename(path=cfg.HOMEDIR, filename=cfg.SETTINGS_FILENAME)
 
-    def run(self):      
+    def run(self):
         """ Создает главное окно программы и запускает событийный цикл """
         self.setup_gui(cfg.GUI['options'], cfg.GUI['theme'])
         # создать главное окно
@@ -168,7 +168,7 @@ class App():
         self.check_height(window)
         self.check_batten(window)
         self.check_bridge(window)
-        self.check_lock_without_handles(window) # не изменять значения ручек
+        self.check_lock_without_handles(window)  # не изменять значения ручек
 
     def check_height(self, window):
         """Проверяет значение поля height"""
@@ -231,13 +231,13 @@ class App():
         if not filepath:
             return
         sg.user_settings_set_entry('-initialdir-', os.path.dirname(filepath))
-        self.update_data(data) # must have errors!
+        self.update_data(data)  # must have errors!
         print('update data:')
         print(data)
 
         logging.info('Версия: {} | Заказ: {} | Заказчик: {} | Инженер: {}'.format(cfg.VERSION,
-                                                                                  data['order'], 
-                                                                                  data['customer'], 
+                                                                                  data['order'],
+                                                                                  data['customer'],
                                                                                   data['engineer']))
 
         try:
@@ -251,7 +251,7 @@ class App():
         except FileNotFoundError as e:
             error_message = 'Не найден файл - {}'.format(e.filename)
             logging.error(error_message)
-            self.show_errors([error_message,])
+            self.show_errors([error_message, ])
 
     def update_data(self, data):
         data['frame_color_name'] = get_name_color(data['frame_color'])
@@ -265,9 +265,9 @@ class App():
 
         Calculator = design_schema['calc']
         Calculator(data,
-                    design_schema['frame_tube'],
-                    design_schema['door_tube'],
-                    ).run()
+                   design_schema['frame_tube'],
+                   design_schema['door_tube'],
+                   ).run()
 
     def show_errors(self, errors):
         """ Выводит вплывающее окно со списком ошибок """
@@ -304,7 +304,7 @@ class App():
         self.redraw_preview_back(window)
         self.redraw_preview_frame(window)
         self.redraw_preview_open(window)
-  
+
     def redraw_preview_open(self, window):
         """Перерисовывает превью типа открывания"""
         window['preview_open'].TKCanvas.delete('all')
@@ -315,31 +315,33 @@ class App():
             center_y = cfg.GUI['size_preview_open'][1] / 2
             self.preview_open_image = tk.PhotoImage(file=filepath)
             window['preview_open'].TKCanvas.create_image(
-                center_x, center_y, image = self.preview_open_image, anchor = tk.CENTER)
+                center_x, center_y, image=self.preview_open_image, anchor=tk.CENTER)
 
     def redraw_preview_back(self, window):
         """Перерисовывает превью общего вида"""
         window['preview_back'].TKCanvas.delete('all')
-        design_schema = get_design_schema(window['fill'].get(), window['open'].get(), window['side'].get(), window['bridge'].get())
+        design_schema = get_design_schema(window['fill'].get(), window['open'].get(),
+                                          window['side'].get(), window['bridge'].get())
         filepath = get_back_preview_filepath(design_schema)
         if filepath:
             center_x = cfg.GUI['size_preview_back'][0] / 2
             center_y = cfg.GUI['size_preview_back'][1] / 2
             self.preview_back_image = tk.PhotoImage(file=filepath)
             window['preview_back'].TKCanvas.create_image(
-                center_x, center_y, image = self.preview_back_image, anchor = tk.CENTER)
+                center_x, center_y, image=self.preview_back_image, anchor=tk.CENTER)
 
     def redraw_preview_frame(self, window):
         """Перерисовывает превью рамы"""
         window['preview_frame'].TKCanvas.delete('all')
-        design_schema = get_design_schema(window['fill'].get(), window['open'].get(), window['side'].get(), window['bridge'].get())
+        design_schema = get_design_schema(window['fill'].get(), window['open'].get(),
+                                          window['side'].get(), window['bridge'].get())
         filepath = get_frame_preview_filepath(design_schema)
         if filepath:
             center_x = cfg.GUI['size_preview_frame'][0] / 2
             center_y = cfg.GUI['size_preview_frame'][1] / 2
             self.preview_frame_image = tk.PhotoImage(file=filepath)
             window['preview_frame'].TKCanvas.create_image(
-                center_x, center_y, image = self.preview_frame_image, anchor = tk.CENTER)
+                center_x, center_y, image=self.preview_frame_image, anchor=tk.CENTER)
 
 
 # --------------------- validators --------------------------------
@@ -381,7 +383,7 @@ def validate_of_value(data):
     errors = []
     for key in cfg.WIDGETS.keys():
         if 'valid' in cfg.WIDGETS[key] and 'in_list' in cfg.WIDGETS[key]['valid']:
-            if not data[key] in cfg.WIDGETS[key]['values']: # если не в списке
+            if not data[key] in cfg.WIDGETS[key]['values']:  # если не в списке
                 errors.append('[{}] имеет не верное значение!'.format(
                     cfg.WIDGETS[key]['text']))
     return errors
@@ -402,31 +404,34 @@ def get_open_preview_filepath(schema):
 
 
 def get_back_view_filepath(design_schema):
-    filename = design_schema['back_view']
+    filename = design_schema.get('back_view')
     if filename:
         return cfg.get_filepath('back_view', filename)
 
 
 def get_back_preview_filepath(design_schema):
-    filename = design_schema['back_view']
+    filename = design_schema.get('back_view')
     if filename:
         return cfg.get_filepath('back_preview', filename)
 
+
 def get_frame_preview_filepath(design_schema):
-    filename = design_schema['frame_view']
+    filename = design_schema.get('frame_view')
     if filename:
         return cfg.get_filepath('frame_preview', filename)
 
 
 def get_sketch_filepath(design_schema):
-    filename = design_schema['sketch']
+    filename = design_schema.get('sketch')
     if filename:
         return cfg.get_filepath('sketchs', filename)
 
 
 def get_design_schema(fill, open, side, bridge):
-    design_name = cfg.FILLING[fill] + open + side + bridge
-    return cfg.DESIGNS[design_name]
+    fill = cfg.FILLING.get(fill)
+    if fill:
+        design_name = fill + open + side + bridge
+        return cfg.DESIGNS.get(design_name)
 
 
 def get_name_color(ral):
