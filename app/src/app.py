@@ -263,6 +263,7 @@ class App():
         data['sketch_file'] = get_sketch_filepath(design_schema)
         data['open_view_file'] = get_open_view_filepath(data['side'], data['open'])
         data['back_view_file'] = get_back_view_filepath(data['bridge'], data['side'])
+        data['frame_view_file'] = get_frame_view_filepath(data['frame_type'])
 
         Calculator = design_schema['calc']
         Calculator(data,
@@ -427,6 +428,12 @@ def get_frame_preview_filepath(frame_type):
     filename = cfg.FRAME_VIEW_FILENAMES.get(frame_type)
     if filename:
         return cfg.get_filepath('frame_preview', filename)
+
+
+def get_frame_view_filepath(frame_type):
+    filename = cfg.FRAME_VIEW_FILENAMES.get(frame_type)
+    if filename:
+        return cfg.get_filepath('frame_view', filename)
 
 
 def get_sketch_filepath(design_schema):

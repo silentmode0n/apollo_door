@@ -129,6 +129,11 @@ class PDFCreator(FPDF):
                                  w=80,
                                  h=0)
 
+        self.render_frame_view(x=self.l_margin + self.epw / 4 * 3 - 26 / 2,
+                                 y=self.t_margin + self.eph - 30,
+                                 w=26,
+                                 h=0)
+
     def create_page_for_manufacture(self):
         """Создает новую страницу и отрисовывает информацию для производства"""
         self.add_page()
@@ -243,6 +248,10 @@ class PDFCreator(FPDF):
     def render_open_view(self, x, y, w=0, h=0):
         self.set_xy(x, y)
         self.image(self.data['open_view_file'], w=w, h=h)
+
+    def render_frame_view(self, x, y, w=0, h=0):
+        self.set_xy(x, y)
+        self.image(self.data['frame_view_file'], w=w, h=h)
 
     def render_back_view(self, x, y, w=0, h=0):
         self.set_xy(x, y)
