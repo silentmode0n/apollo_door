@@ -97,14 +97,6 @@ SIDE = (
     RIGHT,
 )
 
-# файлы вида открытия
-OPEN_VIEW_FILENAMES = {
-    LEFT+IN: 'left_in.png',
-    LEFT+OUT: 'left_out.png',
-    RIGHT+IN: 'right_in.png',
-    RIGHT+OUT: 'right_out.png',
-}
-
 # типы рам
 BRIDGE_Y = 'с перемычкой'
 BRIDGE_YS = 'с перемычкой и с порогом'
@@ -217,6 +209,32 @@ FRAME_TYPES = (
     FR_ANGEL,
 )
 
+# файлы вида рамы
+FRAME_VIEW_FILENAMES = {
+    FR_DIRECT: 'direct.png',
+    FR_ANGEL: 'angel.png',
+}
+
+# файлы вида открытия
+OPEN_VIEW_FILENAMES = {
+    LEFT+IN: 'left_in.png',
+    LEFT+OUT: 'left_out.png',
+    RIGHT+IN: 'right_in.png',
+    RIGHT+OUT: 'right_out.png',
+}
+
+# файлы общего вида
+BACK_VIEW_FILENAMES = {
+    BRIDGE_N+LEFT: 'bridge_n_left_direct.png',
+    BRIDGE_N+RIGHT: 'bridge_n_right_direct.png',
+    BRIDGE_Y+LEFT: 'bridge_y_left_direct.png',
+    BRIDGE_Y+RIGHT: 'bridge_y_right_direct.png',
+    BRIDGE_YS+LEFT: 'bridge_ys_left_direct.png',
+    BRIDGE_YS+RIGHT: 'bridge_ys_right_direct.png',
+    BRIDGE_T+LEFT: 'bridge_t_left_direct.png',
+    BRIDGE_T+RIGHT: 'bridge_t_right_direct.png',
+}
+
 # конструктивы рам
 F20 = 'f20'
 F2020 = 'f20+20'
@@ -229,8 +247,6 @@ DESIGNS = {
     # out+left
     F20+OUT+LEFT+BRIDGE_Y: {
         'sketch': 'f20_out_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -238,8 +254,6 @@ DESIGNS = {
     },
     F20+OUT+LEFT+BRIDGE_N: {
         'sketch': 'f20_out_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -247,8 +261,6 @@ DESIGNS = {
     },
     F20+OUT+LEFT+BRIDGE_T: {
         'sketch': 'f20_out_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -256,8 +268,6 @@ DESIGNS = {
     },
     F20+OUT+LEFT+BRIDGE_YS: {
         'sketch': 'f20_out_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -266,8 +276,6 @@ DESIGNS = {
     # out+right
     F20+OUT+RIGHT+BRIDGE_Y: {
         'sketch': 'f20_out_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -275,8 +283,6 @@ DESIGNS = {
     },
     F20+OUT+RIGHT+BRIDGE_N: {
         'sketch': 'f20_out_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -284,8 +290,6 @@ DESIGNS = {
     },
     F20+OUT+RIGHT+BRIDGE_T: {
         'sketch': 'f20_out_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -293,8 +297,6 @@ DESIGNS = {
     },
     F20+OUT+RIGHT+BRIDGE_YS: {
         'sketch': 'f20_out_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (40, 40),
         'door_tube': (40, 20),
@@ -303,8 +305,6 @@ DESIGNS = {
     # in+left
     F20+IN+LEFT+BRIDGE_Y: {
         'sketch': 'f20_in_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -312,8 +312,6 @@ DESIGNS = {
     },
     F20+IN+LEFT+BRIDGE_N: {
         'sketch': 'f20_in_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -321,8 +319,6 @@ DESIGNS = {
     },
     F20+IN+LEFT+BRIDGE_T: {
         'sketch': 'f20_in_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -330,8 +326,6 @@ DESIGNS = {
     },
     F20+IN+LEFT+BRIDGE_YS: {
         'sketch': 'f20_in_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -340,8 +334,6 @@ DESIGNS = {
     # in+right
     F20+IN+RIGHT+BRIDGE_Y: {
         'sketch': 'f20_in_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -349,8 +341,6 @@ DESIGNS = {
     },
     F20+IN+RIGHT+BRIDGE_N: {
         'sketch': 'f20_in_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -358,8 +348,6 @@ DESIGNS = {
     },
     F20+IN+RIGHT+BRIDGE_T: {
         'sketch': 'f20_in_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -367,8 +355,6 @@ DESIGNS = {
     },
     F20+IN+RIGHT+BRIDGE_YS: {
         'sketch': 'f20_in_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (50, 50),
         'door_tube': (40, 20),
@@ -378,8 +364,6 @@ DESIGNS = {
     # out+left
     F2020+OUT+LEFT+BRIDGE_Y: {
         'sketch': 'f2020_out_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -387,8 +371,6 @@ DESIGNS = {
     },
     F2020+OUT+LEFT+BRIDGE_N: {
         'sketch': 'f2020_out_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -396,8 +378,6 @@ DESIGNS = {
     },
     F2020+OUT+LEFT+BRIDGE_T: {
         'sketch': 'f2020_out_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -405,8 +385,6 @@ DESIGNS = {
     },
     F2020+OUT+LEFT+BRIDGE_YS: {
         'sketch': 'f2020_out_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -415,8 +393,6 @@ DESIGNS = {
     # out+right
     F2020+OUT+RIGHT+BRIDGE_Y: {
         'sketch': 'f2020_out_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -424,8 +400,6 @@ DESIGNS = {
     },
     F2020+OUT+RIGHT+BRIDGE_N: {
         'sketch': 'f2020_out_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -433,8 +407,6 @@ DESIGNS = {
     },
     F2020+OUT+RIGHT+BRIDGE_T: {
         'sketch': 'f2020_out_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -442,8 +414,6 @@ DESIGNS = {
     },
     F2020+OUT+RIGHT+BRIDGE_YS: {
         'sketch': 'f2020_out_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -452,8 +422,6 @@ DESIGNS = {
     # in+left
     F2020+IN+LEFT+BRIDGE_Y: {
         'sketch': 'f2020_in_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -461,8 +429,6 @@ DESIGNS = {
     },
     F2020+IN+LEFT+BRIDGE_N: {
         'sketch': 'f2020_in_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -470,8 +436,6 @@ DESIGNS = {
     },
     F2020+IN+LEFT+BRIDGE_T: {
         'sketch': 'f2020_in_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -479,8 +443,6 @@ DESIGNS = {
     },
     F2020+IN+LEFT+BRIDGE_YS: {
         'sketch': 'f2020_in_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -489,8 +451,6 @@ DESIGNS = {
     # in+right
     F2020+IN+RIGHT+BRIDGE_Y: {
         'sketch': 'f2020_in_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -498,8 +458,6 @@ DESIGNS = {
     },
     F2020+IN+RIGHT+BRIDGE_N: {
         'sketch': 'f2020_in_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -507,8 +465,6 @@ DESIGNS = {
     },
     F2020+IN+RIGHT+BRIDGE_T: {
         'sketch': 'f2020_in_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -516,8 +472,6 @@ DESIGNS = {
     },
     F2020+IN+RIGHT+BRIDGE_YS: {
         'sketch': 'f2020_in_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -527,8 +481,6 @@ DESIGNS = {
     # out+left
     F40+OUT+LEFT+BRIDGE_Y: {
         'sketch': 'f40_out_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -536,8 +488,6 @@ DESIGNS = {
     },
     F40+OUT+LEFT+BRIDGE_N: {
         'sketch': 'f40_out_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -545,8 +495,6 @@ DESIGNS = {
     },
     F40+OUT+LEFT+BRIDGE_T: {
         'sketch': 'f40_out_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -554,8 +502,6 @@ DESIGNS = {
     },
     F40+OUT+LEFT+BRIDGE_YS: {
         'sketch': 'f40_out_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -564,8 +510,6 @@ DESIGNS = {
     # out+right
     F40+OUT+RIGHT+BRIDGE_Y: {
         'sketch': 'f40_out_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -573,8 +517,6 @@ DESIGNS = {
     },
     F40+OUT+RIGHT+BRIDGE_N: {
         'sketch': 'f40_out_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -582,8 +524,6 @@ DESIGNS = {
     },
     F40+OUT+RIGHT+BRIDGE_T: {
         'sketch': 'f40_out_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -591,8 +531,6 @@ DESIGNS = {
     },
     F40+OUT+RIGHT+BRIDGE_YS: {
         'sketch': 'f40_out_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -601,8 +539,6 @@ DESIGNS = {
     # in+left
     F40+IN+LEFT+BRIDGE_Y: {
         'sketch': 'f40_in_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -610,8 +546,6 @@ DESIGNS = {
     },
     F40+IN+LEFT+BRIDGE_N: {
         'sketch': 'f40_in_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -619,8 +553,6 @@ DESIGNS = {
     },
     F40+IN+LEFT+BRIDGE_T: {
         'sketch': 'f40_in_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -628,8 +560,6 @@ DESIGNS = {
     },
     F40+IN+LEFT+BRIDGE_YS: {
         'sketch': 'f40_in_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -638,8 +568,6 @@ DESIGNS = {
     # in+right
     F40+IN+RIGHT+BRIDGE_Y: {
         'sketch': 'f40_in_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -647,8 +575,6 @@ DESIGNS = {
     },
     F40+IN+RIGHT+BRIDGE_N: {
         'sketch': 'f40_in_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -656,8 +582,6 @@ DESIGNS = {
     },
     F40+IN+RIGHT+BRIDGE_T: {
         'sketch': 'f40_in_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -665,8 +589,6 @@ DESIGNS = {
     },
     F40+IN+RIGHT+BRIDGE_YS: {
         'sketch': 'f40_in_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -676,32 +598,24 @@ DESIGNS = {
     # out+left
     F60+OUT+LEFT+BRIDGE_Y: {
         'sketch': 'f60_out_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+OUT+LEFT+BRIDGE_N: {
         'sketch': 'f60_out_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+OUT+LEFT+BRIDGE_T: {
         'sketch': 'f60_out_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+OUT+LEFT+BRIDGE_YS: {
         'sketch': 'f60_out_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -709,32 +623,24 @@ DESIGNS = {
     # out+right
     F60+OUT+RIGHT+BRIDGE_Y: {
         'sketch': 'f60_out_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+OUT+RIGHT+BRIDGE_N: {
         'sketch': 'f60_out_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+OUT+RIGHT+BRIDGE_T: {
         'sketch': 'f60_out_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+OUT+RIGHT+BRIDGE_YS: {
         'sketch': 'f60_out_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -742,32 +648,24 @@ DESIGNS = {
     # in+left
     F60+IN+LEFT+BRIDGE_Y: {
         'sketch': 'f60_in_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+IN+LEFT+BRIDGE_N: {
         'sketch': 'f60_in_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+IN+LEFT+BRIDGE_T: {
         'sketch': 'f60_in_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+IN+LEFT+BRIDGE_YS: {
         'sketch': 'f60_in_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -775,32 +673,24 @@ DESIGNS = {
     # in+right
     F60+IN+RIGHT+BRIDGE_Y: {
         'sketch': 'f60_in_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+IN+RIGHT+BRIDGE_N: {
         'sketch': 'f60_in_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+IN+RIGHT+BRIDGE_T: {
         'sketch': 'f60_in_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
     },
     F60+IN+RIGHT+BRIDGE_YS: {
         'sketch': 'f60_in_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (60, 40),
         'door_tube': (60, 40),
@@ -809,32 +699,24 @@ DESIGNS = {
     # out+left
     FGR+OUT+LEFT+BRIDGE_Y: {
         'sketch': 'fgr_out_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+OUT+LEFT+BRIDGE_N: {
         'sketch': 'fgr_out_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+OUT+LEFT+BRIDGE_T: {
         'sketch': 'fgr_out_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+OUT+LEFT+BRIDGE_YS: {
         'sketch': 'fgr_out_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
@@ -842,32 +724,24 @@ DESIGNS = {
     # out+right
     FGR+OUT+RIGHT+BRIDGE_Y: {
         'sketch': 'fgr_out_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+OUT+RIGHT+BRIDGE_N: {
         'sketch': 'fgr_out_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+OUT+RIGHT+BRIDGE_T: {
         'sketch': 'fgr_out_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+OUT+RIGHT+BRIDGE_YS: {
         'sketch': 'fgr_out_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
@@ -875,32 +749,24 @@ DESIGNS = {
     # in+left
     FGR+IN+LEFT+BRIDGE_Y: {
         'sketch': 'fgr_in_left_y.png',
-        'back_view': 'bridge_y_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+IN+LEFT+BRIDGE_N: {
         'sketch': 'fgr_in_left_n.png',
-        'back_view': 'bridge_n_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+IN+LEFT+BRIDGE_T: {
         'sketch': 'fgr_in_left_t.png',
-        'back_view': 'bridge_t_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+IN+LEFT+BRIDGE_YS: {
         'sketch': 'fgr_in_left_ys.png',
-        'back_view': 'bridge_ys_left_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
@@ -908,32 +774,24 @@ DESIGNS = {
     # in+right
     FGR+IN+RIGHT+BRIDGE_Y: {
         'sketch': 'fgr_in_right_y.png',
-        'back_view': 'bridge_y_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeY,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+IN+RIGHT+BRIDGE_N: {
         'sketch': 'fgr_in_right_n.png',
-        'back_view': 'bridge_n_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeN,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+IN+RIGHT+BRIDGE_T: {
         'sketch': 'fgr_in_right_t.png',
-        'back_view': 'bridge_t_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeT,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),
     },
     FGR+IN+RIGHT+BRIDGE_YS: {
         'sketch': 'fgr_in_right_ys.png',
-        'back_view': 'bridge_ys_right_direct.png',
-        'frame_view': 'direct.png',
         'calc': CalculatorBridgeYS,
         'frame_tube': (40, 40),
         'door_tube': (40, 40),

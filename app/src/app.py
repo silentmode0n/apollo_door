@@ -74,7 +74,7 @@ class App():
                 self.check_height(window)
             elif event == 'lock':
                 self.check_lock(window)
-            elif event == 'open' or event == 'side':
+            elif event == 'open' or event == 'side' or event == 'frame_type':
                 self.redraw_preview(window)
 
             elif event == '-SUBMIT-':
@@ -104,7 +104,7 @@ class App():
             get_form('open', submit=True),
             get_form('side', submit=True),
             get_form('bridge', submit=True),
-            get_form('frame_type'),
+            get_form('frame_type', submit=True),
             get_form('cliarance'),
             get_form('bridge_height'),
             get_form('frame_color'),
@@ -141,7 +141,7 @@ class App():
             sg.Canvas(key='preview_open', background_color='white', size=cfg.GUI['size_preview_open']),
         ]]
         buttons_frame = [[
-            sg.Button('> Чертёж <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
+            sg.Button('> Подготовить <', key='-SUBMIT-', button_color=cfg.GUI['submit_color']),
             sg.VerticalSeparator(color='grey', pad=(10, 0)),
             sg.Checkbox('Для клиента', default=True, k='for_client'),
             sg.Checkbox('Для производства', default=True, k='for_manufacture'),
@@ -153,7 +153,7 @@ class App():
                 [
                     sg.Column([
                         [sg.Frame('Комментарий', comment_frame, expand_x=True, expand_y=True)],
-                        [sg.Frame('Запуск', buttons_frame, expand_x=True, expand_y=True)],
+                        [sg.Frame('Чертеж', buttons_frame, expand_x=True, expand_y=True)],
                     ], expand_x=False, expand_y=True),
                     sg.Column([
                         [sg.Frame('Предпросмотр', preview_frame, expand_x=True, element_justification='center')],
@@ -221,6 +221,7 @@ class App():
             flexible_tube = cfg.LOCKS[lock]['flexible_tube']
             window['flexible_tube'].update(flexible_tube)
 
+
     def execute(self, data):
         """ Главный метод обработки данных """
         errors = initial_verification(data)
@@ -260,8 +261,8 @@ class App():
 
         design_schema = get_design_schema(data['fill'], data['open'], data['side'], data['bridge'])
         data['sketch_file'] = get_sketch_filepath(design_schema)
-        data['open_view_file'] = get_open_view_filepath(data['side'] + data['open'])
-        data['back_view_file'] = get_back_view_filepath(design_schema)
+        data['open_view_file'] = get_open_view_filepath(data['side'], data['open'])
+        data['back_view_file'] = get_back_view_filepath(data['bridge'], data['side'])
 
         Calculator = design_schema['calc']
         Calculator(data,
@@ -308,8 +309,8 @@ class App():
     def redraw_preview_open(self, window):
         """Перерисовывает превью типа открывания"""
         window['preview_open'].TKCanvas.delete('all')
-        open_schema = window['side'].get() + window['open'].get()
-        filepath = get_open_preview_filepath(open_schema)
+        filepath = get_open_preview_filepath(side=window['side'].get(),
+                                             open=window['open'].get())
         if filepath:
             center_x = cfg.GUI['size_preview_open'][0] / 2
             center_y = cfg.GUI['size_preview_open'][1] / 2
@@ -320,9 +321,8 @@ class App():
     def redraw_preview_back(self, window):
         """Перерисовывает превью общего вида"""
         window['preview_back'].TKCanvas.delete('all')
-        design_schema = get_design_schema(window['fill'].get(), window['open'].get(),
-                                          window['side'].get(), window['bridge'].get())
-        filepath = get_back_preview_filepath(design_schema)
+        filepath = get_back_preview_filepath(bridge=window['bridge'].get(),
+                                             side=window['side'].get())
         if filepath:
             center_x = cfg.GUI['size_preview_back'][0] / 2
             center_y = cfg.GUI['size_preview_back'][1] / 2
@@ -333,9 +333,7 @@ class App():
     def redraw_preview_frame(self, window):
         """Перерисовывает превью рамы"""
         window['preview_frame'].TKCanvas.delete('all')
-        design_schema = get_design_schema(window['fill'].get(), window['open'].get(),
-                                          window['side'].get(), window['bridge'].get())
-        filepath = get_frame_preview_filepath(design_schema)
+        filepath = get_frame_preview_filepath(frame_type=window['frame_type'].get())
         if filepath:
             center_x = cfg.GUI['size_preview_frame'][0] / 2
             center_y = cfg.GUI['size_preview_frame'][1] / 2
@@ -389,34 +387,44 @@ def validate_of_value(data):
     return errors
 
 
-def get_open_view_filepath(schema):
-    """schema = side + open"""
+def validate_of_frame_type(data):
+    errors = []
+    frame_type = data.get('frame_type')
+    if frame_type != cfg.FR_DIRECT:
+        errors.append('Создать чертеж возможно только для типа рамы: ТОРЦЕВАЯ!')
+    return errors
+
+
+def get_open_view_filepath(side, open):
+    schema = side + open
     filename = cfg.OPEN_VIEW_FILENAMES.get(schema)
     if filename:
         return cfg.get_filepath('open_view', filename)
 
 
-def get_open_preview_filepath(schema):
-    """schema = side + open"""
+def get_open_preview_filepath(side, open):
+    schema = side + open
     filename = cfg.OPEN_VIEW_FILENAMES.get(schema)
     if filename:
         return cfg.get_filepath('open_preview', filename)
 
 
-def get_back_view_filepath(design_schema):
-    filename = design_schema.get('back_view')
+def get_back_view_filepath(bridge, side):
+    schema = bridge + side
+    filename = cfg.BACK_VIEW_FILENAMES.get(schema)
     if filename:
         return cfg.get_filepath('back_view', filename)
 
 
-def get_back_preview_filepath(design_schema):
-    filename = design_schema.get('back_view')
+def get_back_preview_filepath(bridge, side):
+    schema = bridge + side
+    filename = cfg.BACK_VIEW_FILENAMES.get(schema)
     if filename:
         return cfg.get_filepath('back_preview', filename)
 
 
-def get_frame_preview_filepath(design_schema):
-    filename = design_schema.get('frame_view')
+def get_frame_preview_filepath(frame_type):
+    filename = cfg.FRAME_VIEW_FILENAMES.get(frame_type)
     if filename:
         return cfg.get_filepath('frame_preview', filename)
 
