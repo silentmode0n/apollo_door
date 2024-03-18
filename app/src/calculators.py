@@ -83,7 +83,7 @@ class CalculatorBridgeYS(CalculatorBase):
         self._cliarance = self._frame_tube[1] + self._frame_gap
 
     def _calc_door_height(self):
-        self._door_height = self._height - self._door_tube[1] * 2 - self._frame_gap * 2
+        self._door_height = self._height - self._frame_tube[1] * 2 - self._frame_gap * 2
 
 
 class CalculatorBridgeT(CalculatorBase):
