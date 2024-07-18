@@ -276,7 +276,8 @@ class App():
         Calculator = design_schema['calc']
         Calculator(data,
                    design_schema['frame_tube'],
-                   design_schema['door_tube'],
+                   design_schema['door_tube1'],
+                   design_schema['door_tube2'],
                    ).run()
 
     def show_errors(self, errors):

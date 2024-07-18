@@ -1,13 +1,14 @@
 
 class CalculatorBase():
-    def __init__(self, data, frame_tube, door_tube, frame_gap=10, fill_gap=5):
+    def __init__(self, data, frame_tube, door_tube1, door_tube2, frame_gap=10, fill_gap=5):
         self._data = data
         self._width = int(data['width'])
         self._height = int(data['height'])
         self._cliarance = int(data['cliarance'])
         self._bridge = int(data['bridge_height'])
         self._frame_tube = frame_tube  # (y, x)
-        self._door_tube = door_tube  # (y, x)
+        self._door_tube1 = door_tube1  # (y, x)
+        self._door_tube2 = door_tube2  # (y, x)
         self._frame_gap = frame_gap
         self._fill_gap = fill_gap
 
@@ -50,10 +51,10 @@ class CalculatorBase():
         self._door_height = self._height - self._cliarance - self._frame_tube[1] - self._frame_gap
 
     def _calc_door_fill_width(self):
-        self._door_fill_width = self._door_width - self._door_tube[1] * 2 - self._fill_gap
+        self._door_fill_width = self._door_width - self._door_tube1[1] - self._door_tube2[1] - self._fill_gap
 
     def _calc_door_fill_height(self):
-        self._door_fill_height = self._door_height - self._door_tube[1] * 2 - self._fill_gap
+        self._door_fill_height = self._door_height - self._door_tube1[1] * 2 - self._fill_gap
 
     def _calc_bridge_fill_width(self):
         pass
@@ -63,21 +64,21 @@ class CalculatorBase():
 
 
 class CalculatorBridgeY(CalculatorBase):
-    def __init__(self, data, frame_tube, door_tube, frame_gap=10, fill_gap=5):
-        super().__init__(data, frame_tube, door_tube, frame_gap, fill_gap)
+    def __init__(self, data, frame_tube, door_tube1, door_tube2, frame_gap=10, fill_gap=5):
+        super().__init__(data, frame_tube, door_tube1, door_tube2, frame_gap, fill_gap)
 
 
 class CalculatorBridgeN(CalculatorBase):
-    def __init__(self, data, frame_tube, door_tube, frame_gap=10, fill_gap=5):
-        super().__init__(data, frame_tube, door_tube, frame_gap, fill_gap)
+    def __init__(self, data, frame_tube, door_tube1, door_tube2, frame_gap=10, fill_gap=5):
+        super().__init__(data, frame_tube, door_tube1, door_tube2, frame_gap, fill_gap)
 
     def _calc_door_height(self):
         self._door_height = self._height - self._cliarance
 
 
 class CalculatorBridgeYS(CalculatorBase):
-    def __init__(self, data, frame_tube, door_tube, frame_gap=10, fill_gap=5):
-        super().__init__(data, frame_tube, door_tube, frame_gap, fill_gap)
+    def __init__(self, data, frame_tube, door_tube1, door_tube2, frame_gap=10, fill_gap=5):
+        super().__init__(data, frame_tube, door_tube1, door_tube2, frame_gap, fill_gap)
 
     def _calc_cliarance(self):
         self._cliarance = self._frame_tube[1] + self._frame_gap
@@ -87,8 +88,8 @@ class CalculatorBridgeYS(CalculatorBase):
 
 
 class CalculatorBridgeT(CalculatorBase):
-    def __init__(self, data, frame_tube, door_tube, frame_gap=10, fill_gap=5):
-        super().__init__(data, frame_tube, door_tube, frame_gap, fill_gap)
+    def __init__(self, data, frame_tube, door_tube1, door_tube2, frame_gap=10, fill_gap=5):
+        super().__init__(data, frame_tube, door_tube1, door_tube2, frame_gap, fill_gap)
 
     def _calc_door_height(self):
         self._door_height = self._height - self._cliarance - self._bridge - self._frame_gap
