@@ -123,6 +123,7 @@ class App():
             get_form('batten', True),
             get_form('batten_lenght'),
             get_form('batten_num'),
+            get_form('sticker'),
         ]
         order_frame = [
             [sg.Column(order_left_col, pad=cfg.GUI['form_padding']),
@@ -169,6 +170,13 @@ class App():
         self.check_batten(window)
         self.check_bridge(window)
         self.check_lock_without_handles(window)  # не изменять значения ручек
+        self.check_sticker(window)
+
+    def check_sticker(self, window):
+        """Проверяет значение поля sticker"""
+        sticker = window['sticker'].get().strip()
+        if not sticker:
+            window['sticker'].update(cfg.YES)
 
     def check_height(self, window):
         """Проверяет значение поля height"""
@@ -179,7 +187,7 @@ class App():
         """Проверяет значение поля batten"""
         batten = window['batten'].get()
         batten_num = window['batten_num'].get()
-        if batten.upper() == cfg.NO or batten == '':
+        if batten.upper() == cfg.NO or batten.strip() == '':
             window['batten_lenght'].update('0', disabled=True)
             window['batten_num'].update('0', disabled=True)
         else:

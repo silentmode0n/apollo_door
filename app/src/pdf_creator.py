@@ -36,7 +36,8 @@ INFO_OPTIONS = """Замок:              {lock}
 Ручка изнутри:      {handle_in}
 Гибкий переход:     {flexible_tube}
 Доводчик:           {auto_closer}
-Нащельник:          {batten} {batten_lenght} мм {batten_num} шт"""
+Нащельник:          {batten} {batten_lenght} мм {batten_num} шт
+Стикер Аполло:      {sticker}"""
 
 
 class PDFCreator(FPDF):

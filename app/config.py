@@ -2,7 +2,7 @@ import os
 import src.ral as ral
 from src.calculators import CalculatorBridgeN, CalculatorBridgeY, CalculatorBridgeT, CalculatorBridgeYS
 
-VERSION = "v-2.3 18.03.2024"
+VERSION = "v-2.4 18.07.2024"
 
 # текущий каталог
 CWD = os.getcwd()
@@ -941,5 +941,9 @@ WIDGETS = {
     'comments': {
         'text': '',
         'values': '>Text<'
+    },
+    'sticker': {
+        'text': 'Стикер Аполло',
+        'values': (YES, NO),
     }
 }
