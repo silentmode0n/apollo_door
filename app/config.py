@@ -924,7 +924,7 @@ WIDGETS = {
         'valid': ('int',),
     },
     'height': {
-        'text': 'Высота полотна, мм',
+        'text': 'Высота проема, мм',
         'values': None,
         'int': True,
         'valid': ('int',),
