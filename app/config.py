@@ -929,7 +929,7 @@ WIDGETS = {
         'values': None,
         'int': True,
         'valid': ('int',),
-        'max': 3000,
+        'max': 4000,
     },
     'cliarance': {
         'text': 'Просвет, мм',
