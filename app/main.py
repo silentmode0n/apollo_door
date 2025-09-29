@@ -52,6 +52,7 @@ parser.add_argument('--handle_out', help='Вид ручки снаружи')
 parser.add_argument('--batten', help='Нащельник')
 parser.add_argument('--batten_num', help='Кол-во нащельников')
 parser.add_argument('--comments', help='Комментарий')
+parser.add_argument('--in_fasad', help='В фасаде с воротами')
 
 
 debug_condition = {'order': '321',
@@ -78,6 +79,7 @@ debug_condition = {'order': '321',
                    'handle_out': cfg.HANDLES[0],
                    'batten': cfg.NO,
                    'comments': 'comments  comments  comments  comments  comments  comments  comments  comments  comments  comments  comments  comments',
+                   'in_fasad': cfg.NO,
                    }
 
 if __name__ == "__main__":

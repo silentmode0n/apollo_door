@@ -109,6 +109,8 @@ class App():
             get_form('bridge_height'),
             get_form('frame_color'),
             get_form('color_type'),
+            get_form('sticker'),
+            get_form('bump'),
         ]
         main_right_col = [
             get_form('fill'),
@@ -123,7 +125,7 @@ class App():
             get_form('batten', True),
             get_form('batten_lenght'),
             get_form('batten_num'),
-            get_form('sticker'),
+            get_form('in_fasad'),
         ]
         order_frame = [
             [sg.Column(order_left_col, pad=cfg.GUI['form_padding']),
@@ -263,6 +265,7 @@ class App():
             self.show_errors([error_message, ])
 
     def update_data(self, data):
+        data['order'] = data['order'].lstrip('0')
         data['frame_color_name'] = get_name_color(data['frame_color'])
         data['fill_color_in_name'] = get_name_color(data['fill_color_in'])
         data['fill_color_out_name'] = get_name_color(data['fill_color_out'])

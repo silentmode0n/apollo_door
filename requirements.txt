@@ -1,3 +1,4 @@
-Babel==2.14.0
-fpdf==1.7.2
+fpdf
+
 PySimpleGUI==4.60.5
+argparse
