@@ -176,9 +176,13 @@ class App():
 
     def check_sticker(self, window):
         """Проверяет значение поля sticker"""
-        sticker = window['sticker'].get().strip()
-        if not sticker:
+        if not window['sticker'].get().strip():
             window['sticker'].update(cfg.YES)
+
+    def check_bump(self, window):
+        """Проверяет значение поля bump"""
+        if not window['bump'].get().strip():
+            window['bump'].update(cfg.NO)
 
     def check_height(self, window):
         """Проверяет значение поля height"""
@@ -464,3 +468,4 @@ def get_design_schema(fill, open, side, bridge):
 def get_name_color(ral):
     """Получает имя цвета по таблице RAL"""
     return cfg.RAL_TABLE.get(ral, '')
+
